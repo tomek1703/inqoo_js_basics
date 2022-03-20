@@ -106,16 +106,17 @@ console.log('Hello JS');
 // console.log(result);
 
 
-function generateArray(arraySize){
-    if(typeof arraySize !== 'number'){
+function generateArray(arraySize) {
+    if (typeof arraySize !== 'number') {
         throw 'arraySize must be number type'
     }
     const arr = [];
-    for(let i = 1; i<= arraySize; i++){
+    for (let i = 1; i <= arraySize; i++) {
         arr.push(i);
     }
     return arr;
 }
+
 // const result = generateArray(67);
 // const result = generateArray(true);
 // console.log(result);
@@ -137,13 +138,25 @@ console.log(myArray)
 // const myArrayMapped = myArray.map((item, index) => {
 //     return { index: index, value: item};
 // });
-const myArrayMapped = myArray.map((item, index) => ({ index: index, value: item}));
-// console.log(myArrayMapped);
+const myArrayMapped = myArray.map((item, index) => ({index: index, value: item}));
+const myArrayReducedMap = myArray.reduce((prev, current, index) =>
+    ([...prev, {value: current, index: index}]), [])
+// myArrayMapped = myArrayReducedMap
+console.log(myArrayMapped);
+console.log(myArrayReducedMap)
 
 const myArrayFiltered = myArrayMapped.filter(item => {
     return item.value % 2 === 0;
 });
+const myArrayReducedFilter = myArrayReducedMap.reduce((prev, current) => {
+    const ret = prev;
+    if (current.value % 2 === 0) {
+        ret.push(current)
+    }
+    return ret;
+}, []);
 // console.log(myArrayFiltered);
+// console.log(myArrayReducedFilter);
 
 const myArrayItem = myArrayFiltered.find(item => {
     return item.value == 50;
@@ -151,8 +164,19 @@ const myArrayItem = myArrayFiltered.find(item => {
 const myArrayItem2 = myArrayFiltered.find(item => {
     return item.value == 51;
 })
-console.log(myArrayItem);
-console.log(myArrayItem2);
+
+const myArrayItemReduced = myArrayReducedFilter.reduce((prev, current) => {
+    if (prev && prev.hasOwnProperty('value') && prev.value === 50) {
+        return prev;
+    }
+    if (current && current.hasOwnProperty('value') && current.value === 50) {
+        return current;
+    }
+    return undefined;
+})
+// console.log(myArrayItem);
+// console.log(myArrayItem2);
+// console.log(myArrayItemReduced);
 
 
 
