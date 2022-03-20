@@ -47,3 +47,125 @@ console.log('Hello JS');
 // console.log(myVar);
 // const myVar = true;
 
+// Block var
+// for(var i =0; i<10; i++){
+//     console.log('i: ', i);
+// }
+// console.log('i after loop:', i);
+
+// Block let
+// for(let i =0; i<10; i++){
+//     console.log('i: ', i);
+// }
+// console.log('i after loop:', i);
+
+// 1. Create array of elements from 0 to 50 using a loop
+// const myArr = [];
+// for(let i = 0; i <= 50; i++){
+//     myArr.push(i);
+// }
+// console.log(myArr)
+
+// const myArr = [];
+// for(let i = 0; i <= 100; i+=2){
+//     console.log(i);
+//     myArr.push(i);
+// }
+// console.log(myArr);
+
+// const myArr = [];
+// for(let i = 0; i<=100; i++){
+//     console.log(i);
+//     if(i % 2 === 0) {
+//         myArr.push(i);
+//     }
+// }
+// console.log(myArr);
+
+// Functions
+
+// function myFunction(){
+//     console.log('myFunction')
+// }
+// myFunction();
+
+// const myFunction = () =>{
+//     console.log('myFunction const');
+// }
+
+// const myFunction = () => console.log('myFunction const');
+// console.log(typeof myFunction);
+// myFunction();
+
+// function myFunction(n, m){
+//     console.log('n', n);
+//     console.log('m', m)
+//     return n + m;
+// }
+// const result = myFunction(10,11);
+// console.log(result);
+
+
+function generateArray(arraySize){
+    if(typeof arraySize !== 'number'){
+        throw 'arraySize must be number type'
+    }
+    const arr = [];
+    for(let i = 1; i<= arraySize; i++){
+        arr.push(i);
+    }
+    return arr;
+}
+// const result = generateArray(67);
+// const result = generateArray(true);
+// console.log(result);
+
+
+//Array Operators examples
+
+// const myArray = generateArray(100);
+// const myArrayMapped = myArray.map((item, index) => {
+//     console.log('item', item);
+//     console.log('index', index);
+//     console.log('--------------------------------')
+//     return item;
+// });
+// console.log(myArrayMapped);
+
+const myArray = generateArray(100);
+console.log(myArray)
+// const myArrayMapped = myArray.map((item, index) => {
+//     return { index: index, value: item};
+// });
+const myArrayMapped = myArray.map((item, index) => ({ index: index, value: item}));
+// console.log(myArrayMapped);
+
+const myArrayFiltered = myArrayMapped.filter(item => {
+    return item.value % 2 === 0;
+});
+// console.log(myArrayFiltered);
+
+const myArrayItem = myArrayFiltered.find(item => {
+    return item.value == 50;
+})
+const myArrayItem2 = myArrayFiltered.find(item => {
+    return item.value == 51;
+})
+console.log(myArrayItem);
+console.log(myArrayItem2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
