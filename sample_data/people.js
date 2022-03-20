@@ -1894,7 +1894,68 @@ const people = [
     }
 ];
 
+console.log('People');
 
+//MAPS
+// 1. MAP array of people to array of objects that include name, height and mass properties.
 
+const people01 = people.map(person => ({
+    name: person.name,
+    height: person.height,
+    mass: person.mass
+}));
+//
+// console.log('people01', people01);
 
+// 2. MAP array of people to array of objects that include name, height and mass properties.
+// if mass is 'unknown' change it to undefined
+
+const people02 = people.map(person => ({
+    name: person.name,
+    height: person.height,
+    mass: person.mass === "unknown" ? undefined : person.mass
+}));
+
+// console.log('people02', people02);
+
+// 3. MAP array of people to array of objects that include name, height and mass properties.
+// if mass is 'unknown' change it to undefined else convert to number
+// convert height to number
+
+const people03 = people.map(person => ({
+    name: person.name,
+    height: Number(person.height),
+    mass: person.mass === "unknown" ? undefined : Number(person.mass)
+}));
+
+// console.log('people03', people03);
+
+//FILTER
+// 1. Filter people where mass is undefined
+
+const people04 = people03.filter(person => person.mass);
+// console.log('people04', people04);
+
+//FILTER
+// 2. Filter people where mass is undefined and height is no less than 170
+
+const people05 = people03.filter(person => person.mass && person.height >= 170);
+// console.log('people05', people05);
+
+//FIND
+// 1. Find you favorite star wars character if you don't have any find Yoda
+
+const anakin = people03.find(people => people.name === 'Anakin Skywalker')
+// console.log('anakin', anakin)
+
+//FIND INDEX
+// 1. Find you favorite star wars character index if you don't have any find Yoda
+
+const anakinIndex = people03.findIndex(people => people.name === 'Anakin Skywalker')
+// console.log('anakinIndex', anakinIndex)
+
+//REDUCE
+// 1. Calculate mass of all star wars characters
+const mass = people04.reduce((prev, curr) => prev + curr.mass, 0);
+console.log('mass', mass)
 

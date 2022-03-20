@@ -856,3 +856,5 @@ const starships = [
         url: 'http://swapi.dev/api/starships/75/'
     }
 ];
+
+console.log('Starships')
