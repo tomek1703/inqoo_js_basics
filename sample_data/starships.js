@@ -858,3 +858,10 @@ const starships = [
 ];
 
 console.log('Starships')
+
+// 1. MAP array of starships to array of objects that include name, model, manufacturer, cost_in_credits, max_atmosphering_speed and crew properties.
+// 2. In result from exercise 1 convert cost_in_credits, max_atmosphering_speed and crew to number type properties
+// 3. In result from exercise 2 filter results so only starships with crew no less than 100 are shown
+// 4. In result from exercise 2 find Millennium Falcon
+// 5. In result from exercise 2 find index of Death Star
+// 6. In result from exercise 2 find 5 most expensive starships
