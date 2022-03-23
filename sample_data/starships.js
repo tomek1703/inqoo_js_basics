@@ -867,12 +867,40 @@ const mappedStarships = starships.map(starship=>({
     cost_in_credits: starship.cost_in_credits,
     max_atmosphering_speed: starship.max_atmosphering_speed,
     crew: starship.crew,
-}))
+}));
 console.log(mappedStarships);
 
-
 // 2. In result from exercise 1 convert cost_in_credits, max_atmosphering_speed and crew to number type properties
+const convertedStarships = mappedStarships.map(starship => ({
+    name: starship.name,
+    model: starship.model,
+    manufacturer: starship.manufacturer,
+    cost_in_credits: Number(starship.cost_in_credits),
+    max_atmosphering_speed: Number(starship.max_atmosphering_speed),
+    crew: Number(starship.crew),
+}));
+console.log(convertedStarships);
+
 // 3. In result from exercise 2 filter results so only starships with crew no less than 100 are shown
+
+const filteredStarships = convertedStarships.filter(starship => starship.crew>=100);
+console.log(filteredStarships);
+
 // 4. In result from exercise 2 find Millennium Falcon
+
+const milleniumFalcon = convertedStarships.find(starship => starship.name === 'Millennium Falcon');
+console.log(milleniumFalcon);
+
 // 5. In result from exercise 2 find index of Death Star
+
+const deathStar = convertedStarships.findIndex(starship => starship.name ==='Death Star');
+console.log(deathStar);
+
 // 6. In result from exercise 2 find 5 most expensive starships
+
+const sortedStarships = convertedStarships.sort((prevStarship,nextStarship) => 
+    nextStarship.cost_in_credits - prevStarship.cost_in_credits
+    );
+console.log(sortedStarships);
+const mostExpensiveStarships = sortedStarships.slice(0,5);
+console.log(mostExpensiveStarships);
