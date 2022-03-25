@@ -868,39 +868,51 @@ const mappedStarships = starships.map(starship=>({
     max_atmosphering_speed: starship.max_atmosphering_speed,
     crew: starship.crew,
 }));
-console.log(mappedStarships);
+console.log('exercise 1 ', mappedStarships);
 
 // 2. In result from exercise 1 convert cost_in_credits, max_atmosphering_speed and crew to number type properties
+
+const getCrew = crew => {
+    const minMaxCrew = crew.replace(',','').split('-');// removing commas and splitting values
+    if(minMaxCrew.length===2){
+        return {
+            min_crew: Number(minMaxCrew[0]),
+            max_crew: Number(minMaxCrew [1]),
+        }
+    }
+else{
+        return { crew: Number(crew==='unknown'||crew===undefined ? 0 : minMaxCrew)}// checking if there any 'unknown' or undefinded values
+    }
+};
+
 const convertedStarships = mappedStarships.map(starship => ({
     name: starship.name,
     model: starship.model,
     manufacturer: starship.manufacturer,
     cost_in_credits: Number(starship.cost_in_credits),
     max_atmosphering_speed: Number(starship.max_atmosphering_speed),
-    crew: Number(starship.crew),
-}));
-console.log(convertedStarships);
+    ...getCrew(starship.crew),//spreading the the object
+    }));
+console.log('exercise 2, ', convertedStarships);
 
 // 3. In result from exercise 2 filter results so only starships with crew no less than 100 are shown
 
-const filteredStarships = convertedStarships.filter(starship => starship.crew>=100);
-console.log(filteredStarships);
+const filteredStarships = convertedStarships.filter(starship => starship.max_crew>=100||starship.crew>=100);
+console.log('exercise 3 ', filteredStarships);
 
 // 4. In result from exercise 2 find Millennium Falcon
 
 const milleniumFalcon = convertedStarships.find(starship => starship.name === 'Millennium Falcon');
-console.log(milleniumFalcon);
+console.log('eercise 4', milleniumFalcon);
 
 // 5. In result from exercise 2 find index of Death Star
 
 const deathStar = convertedStarships.findIndex(starship => starship.name ==='Death Star');
-console.log(deathStar);
+console.log('exercise 5 ', deathStar);
 
 // 6. In result from exercise 2 find 5 most expensive starships
 
-const sortedStarships = convertedStarships.sort((prevStarship,nextStarship) => 
+const sortStarships = convertedStarships.sort((prevStarship,nextStarship) => 
     nextStarship.cost_in_credits - prevStarship.cost_in_credits
-    );
-console.log(sortedStarships);
-const mostExpensiveStarships = sortedStarships.slice(0,5);
-console.log(mostExpensiveStarships);
+    ).slice(0,5);
+console.log('exercise 6 ', sortStarships)
