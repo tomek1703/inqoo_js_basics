@@ -871,17 +871,16 @@ const mappedStarships = starships.map(starship=>({
 console.log('exercise 1 ', mappedStarships);
 
 // 2. In result from exercise 1 convert cost_in_credits, max_atmosphering_speed and crew to number type properties
-
 const getCrew = crew => {
     const minMaxCrew = crew.replace(',','').split('-');// removing commas and splitting values
     if(minMaxCrew.length===2){
         return {
-            min_crew: Number(minMaxCrew[0]),
-            max_crew: Number(minMaxCrew [1]),
+            min_crew: Number(minMaxCrew[0] || 0),
+            max_crew: Number(minMaxCrew [1] || 0),
         }
     }
 else{
-        return { crew: Number(crew==='unknown'||crew===undefined ? 0 : minMaxCrew)}// checking if there any 'unknown' or undefinded values
+        return { crew: Number(minMaxCrew) || 0}// checking if there any 'unknown' or undefinded values
     }
 };
 
@@ -889,15 +888,15 @@ const convertedStarships = mappedStarships.map(starship => ({
     name: starship.name,
     model: starship.model,
     manufacturer: starship.manufacturer,
-    cost_in_credits: Number(starship.cost_in_credits),
-    max_atmosphering_speed: Number(starship.max_atmosphering_speed),
+    cost_in_credits: Number(starship.cost_in_credits)||0,
+    max_atmosphering_speed: Number(starship.max_atmosphering_speed)||0,
     ...getCrew(starship.crew),//spreading the the object
     }));
 console.log('exercise 2, ', convertedStarships);
 
 // 3. In result from exercise 2 filter results so only starships with crew no less than 100 are shown
 
-const filteredStarships = convertedStarships.filter(starship => starship.max_crew>=100||starship.crew>=100);
+const filteredStarships = convertedStarships.filter(starship => starship.max_crew>=100 ||starship.crew>=100);
 console.log('exercise 3 ', filteredStarships);
 
 // 4. In result from exercise 2 find Millennium Falcon
@@ -915,4 +914,10 @@ console.log('exercise 5 ', deathStar);
 const sortStarships = convertedStarships.sort((prevStarship,nextStarship) => 
     nextStarship.cost_in_credits - prevStarship.cost_in_credits
     ).slice(0,5);
+
 console.log('exercise 6 ', sortStarships)
+
+//const reduceStarships = convertedStarships.reduce(()=>{});
+//console.log(reduceStarships);
+
+
